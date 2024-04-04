@@ -1,0 +1,11 @@
+FROM ./starchat2-15b-v0.1-f16.gguf
+# 16k token context window, 4k token sliding attention window
+PARAMETER num_ctx 16384
+
+TEMPLATE """{{ if .First }}<|system|>
+{{.System}}<|end|>{{ end }}
+<|user|>
+{{ .Prompt }}<|end|>
+<|assistant|>"""
+
+PARAMETER stop "<|end|>"
